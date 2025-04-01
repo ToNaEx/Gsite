@@ -81,11 +81,11 @@
 
   <div id="image-container">
     <!-- Exemple d'images qui défileront -->
-    <img src="ATR.jfif" alt="ATR">
-    <img src="" alt="Trouver une image représentant un WP">
-    <img src="ATR NZ.jfif" alt="ATR Nouvelle-Zélande">
-    <img src="" alt="Image de PEs">
-    <img src="image5.jpg" alt="Trouver une image de certaines Refs ou mettre ATR Nouvelle Zélande">
+    <img src="https://github.com/ToNaEx/Gsite/blob/main/ATR%20NZ%202.jpg" alt="ATR NZ 2">
+    <img src="https://github.com/ToNaEx/Gsite/blob/main/ATR%20NZ.jpg" alt="ATR NZ">
+    <img src="https://github.com/ToNaEx/Gsite/blob/main/ATR.jpg" alt="ATR">
+    <img src="https://github.com/ToNaEx/Gsite/blob/main/Annotation%202025-03-10%20114324.png" alt="Image de PEs">
+    <img src="https://github.com/ToNaEx/Gsite/blob/main/Assemblement%20ATR.png" alt="Assemblement">
   </div>
 
   <script>
