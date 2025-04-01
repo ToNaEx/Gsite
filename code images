@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compteur animé avec défilement d'images</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f9;
+      margin: 0;
+      position: relative;
+      flex-direction: column;
+    }
+
+    /* Compteur centré en haut */
+    #counter-container {
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      top: 20px;
+      width: 100%;
+    }
+    #counter {
+      font-size: 50px;
+      font-weight: bold;
+      color: #003B5C;
+    }
+
+    /* Limiter la largeur du texte et augmenter la hauteur */
+    #message {
+      font-size: 24px;
+      font-weight: normal;
+      color: #333;
+      text-align: left;
+      position: absolute;
+      left: 100px;
+      top: 150px;
+      width: 300px;
+      height: auto;  /* Permet au texte d'occuper plus de hauteur */
+      line-height: 1.5;
+      white-space: normal; /* Permet au texte de passer sur plusieurs lignes si nécessaire */
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Conteneur des images fixé à droite */
+    #image-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      height: 200px;
+      width: 100px;
+      position: absolute;
+      right: 10px;
+      top: 150px;
+    }
+    #image-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      position: absolute; /* Les images se chevauchent dans le même espace */
+    }
+  </style>
+</head>
+<body>
+
+  <div id="counter-container">
+    <div id="counter">0</div>
+  </div>
+
+  <div id="message"></div>
+
+  <div id="image-container">
+    <!-- Exemple d'images qui défileront -->
+    <img src="ATR.jfif" alt="ATR">
+    <img src="" alt="Trouver une image représentant un WP">
+    <img src="ATR NZ.jfif" alt="ATR Nouvelle-Zélande">
+    <img src="" alt="Image de PEs">
+    <img src="image5.jpg" alt="Trouver une image de certaines Refs ou mettre ATR Nouvelle Zélande">
+  </div>
+
+  <script>
+    var counterElement = document.getElementById("counter");
+    var messageElement = document.getElementById("message");
+    var imageContainer = document.getElementById("image-container");
+    var images = imageContainer.getElementsByTagName("img");
+
+    // Fonction pour animer le compteur et les images
+    function animateCounter(startValue, endValue, duration, message, nextStep) {
+      let startTime = Date.now();
+
+      function updateCounter() {
+        let elapsedTime = Date.now() - startTime;
+        let progress = Math.min(elapsedTime / duration, 1);
+        let currentValue = Math.floor(startValue + (endValue - startValue) * progress);
+        
+        counterElement.innerText = currentValue;
+
+        // Synchronisation avec le défilement des images
+        let imageIndex = Math.floor(progress * (images.length - 1));
+        
+        // Masquer toutes les images et afficher la bonne image à chaque étape
+        for (let i = 0; i < images.length; i++) {
+          images[i].style.opacity = 0; // Masquer toutes les images
+        }
+
+        // Afficher l'image correspondante au chiffre actuel
+        if (currentValue >= 0 && currentValue < 60) {
+          images[0].style.opacity = 1;
+        } else if (currentValue >= 60 && currentValue < 74) {
+          images[1].style.opacity = 1;
+        } else if (currentValue >= 74 && currentValue < 400) {
+          images[2].style.opacity = 1;
+        } else if (currentValue >= 400 && currentValue < 4000) {
+          images[3].style.opacity = 1;
+        } else if (currentValue >= 4000) {
+          images[4].style.opacity = 1;
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(updateCounter);
+        } else {
+          counterElement.innerText = endValue;
+          if (message) {
+            messageElement.innerText = message;
+            messageElement.style.display = "block";
+            setTimeout(() => {
+              messageElement.style.display = "none";
+              if (nextStep) nextStep();
+            }, 3000); // Afficher le message pendant 3 secondes
+          } else {
+            if (nextStep) nextStep(); // Passer à l'étape suivante sans message
+          }
+        }
+      }
+
+      updateCounter();
+    }
+
+    // Fonction pour démarrer le processus de comptage et du défilement des images
+    function startCounting() {
+      // Étape 1: Compter de 0 à 60
+      animateCounter(0, 60, 3000, "Nombre d'avions fabriqués chaque année", function() {
+        setTimeout(function() {
+          animateCounter(60, 74, 3000, "Nombre de références de WP", function() {
+            setTimeout(function() {
+              animateCounter(74, 400, 3000, "Nombre de références de PE", function() {
+                setTimeout(function() {
+                  animateCounter(400, 4000, 3000, "Nombre de références total", function() {
+                    setTimeout(startCounting, 1000); // Relancer la séquence après une seconde
+                  });
+                }, 1);
+              });
+            }, 1);
+          });
+        }, 1);
+      });
+    }
+
+    // Démarrer le comptage lorsque la page est chargée
+    window.onload = startCounting;
+  </script>
+
+</body>
+</html>
