@@ -81,11 +81,11 @@
 
   <div id="image-container">
     <!-- Exemple d'images qui défileront -->
-    <img src="https://github.com/ToNaEx/Gsite/blob/main/ATR%20NZ%202.jpg" alt="ATR NZ 2">
-    <img src="https://github.com/ToNaEx/Gsite/blob/main/ATR%20NZ.jpg" alt="ATR NZ">
-    <img src="https://github.com/ToNaEx/Gsite/blob/main/ATR.jpg" alt="ATR">
-    <img src="https://github.com/ToNaEx/Gsite/blob/main/Annotation%202025-03-10%20114324.png" alt="Image de PEs">
-    <img src="https://github.com/ToNaEx/Gsite/blob/main/Assemblement%20ATR.png" alt="Assemblement">
+    <img src="https://github.com/ToNaEx/Gsite/blob/raw/ATR%20NZ%202.jpg" alt="ATR NZ 2">
+    <img src="https://github.com/ToNaEx/Gsite/blob/raw/ATR%20NZ.jpg" alt="ATR NZ">
+    <img src="https://github.com/ToNaEx/Gsite/blob/raw/ATR.jpg" alt="ATR">
+    <img src="https://github.com/ToNaEx/Gsite/blob/raw/Annotation%202025-03-10%20114324.png" alt="Image de PEs">
+    <img src="https://github.com/ToNaEx/Gsite/blob/raw/Assemblement%20ATR.png" alt="Assemblement">
   </div>
 
   <script>
